@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Booking Enquiries | ChobeKasane Domestic Tourism</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+    <style>
+        /* LOGO SIZING */
+        .logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* PAGE BACKGROUND */
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background:
+                linear-gradient(
+                    rgba(247, 246, 240, 0.91),
+                    rgba(247, 246, 240, 0.96)
+                ),
+                url("img/chobe-river-background.jpg") center/cover fixed;
+        }
+
+        /* MAIN PAGE */
+        .page-main {
+            padding-top: 65px;
+            padding-bottom: 80px;
+        }
+
+        /* PAGE INTRODUCTION */
+        .page-header {
+            text-align: center;
+            max-width: 750px;
+            margin: 0 auto 45px;
+        }
+
+        .page-header .eyebrow {
+            color: #a4773e;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(34px, 5vw, 48px);
+            color: #243d32;
+            margin: 15px 0;
+        }
+
+        .page-header p {
+            color: #65736a;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* CONTACT LAYOUT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.35fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        /* CONTACT INFORMATION PANEL */
+        .contact-info {
+            background: rgba(35, 61, 49, 0.96);
+            color: #fff;
+            padding: 38px 32px;
+            border-radius: 18px;
+            box-shadow: 0 15px 40px rgba(25, 45, 34, 0.13);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::after {
+            content: "";
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 50%;
+            right: -85px;
+            bottom: -90px;
+            pointer-events: none;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            color: #f1d7a9;
+            margin-bottom: 17px;
+        }
+
+        .contact-info > p {
+            color: rgba(255,255,255,0.82);
+            font-size: 13px;
+            line-height: 1.9;
+            margin-bottom: 28px;
+        }
+
+        .contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            color: rgba(255,255,255,0.88);
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .contact-list li strong {
+            color: #f1d7a9;
+        }
+
+        /* FORM PANEL */
+        .contact-form-wrapper {
+            background: rgba(255,255,255,0.94);
+            padding: 38px;
+            border-radius: 18px;
+            border: 1px solid rgba(36, 61, 50, 0.08);
+            box-shadow: 0 15px 45px rgba(30, 45, 35, 0.08);
+            backdrop-filter: blur(8px);
+        }
+
+        .contact-form-wrapper::before {
+            content: "TRAVEL WITH CONFIDENCE";
+            display: block;
+            color: #a4773e;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #304638;
+            margin-bottom: 9px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #e1e5df;
+            border-radius: 9px;
+            background: #fafbf9;
+            color: #273a30;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 12px;
+            outline: none;
+            transition: 0.25s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #a4773e;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(164,119,62,0.10);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 125px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #a0aaa2;
+        }
+
+        .btn-full {
+            width: 100%;
+            padding: 16px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            border-radius: 9px;
+        }
+
+        .error-msg,
+        .success-msg {
+            margin-top: 15px;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* TRIP CART PREVIEW */
+        .enquiry-cart-box {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 30px;
+        }
+
+        .enquiry-cart-box h4 {
+            color: #f1d7a9;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .enquiry-cart-total {
+            border-top: 1px solid rgba(255,255,255,0.15);
+            margin-top: 12px;
+            padding-top: 12px;
+            font-weight: 800;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 850px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-main {
+                padding-top: 40px;
+            }
+
+            .page-header {
+                margin-bottom: 30px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-form-wrapper {
+                padding: 24px 18px;
+            }
+
+            .contact-info {
+                padding: 28px 22px;
+            }
+
+            .page-header h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header class="site-header">
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                <img src="img/BTO LOGO.jpg" alt="Botswana Tourism Organisation Logo">
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="accommodations.html">Accommodations</a>
+                <a href="activities.html">Activities & Tours</a>
+                <a href="contact.html" class="active">Enquiries</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="cart-trigger" onclick="toggleCart()" aria-label="Open Trip Cart">
+                    <span class="cart-icon">🧳</span>
+                    <span class="cart-label">Trip Cart</span>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                    ☰
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="container page-main">
+
+        <div class="page-header">
+            <span class="eyebrow">Direct Operator Connection</span>
+
+            <h1>Let's Plan Your Chobe Experience</h1>
+
+            <p>
+                Ready to explore Kasane? Review your Trip Cart or submit a booking
+                enquiry to connect with service providers offering Botswana
+                citizen and resident rates.
+            </p>
+        </div>
+
+
+        <div class="contact-grid">
+
+            <!-- CONTACT INFORMATION -->
+            <div class="contact-info">
+
+                <h3>Kasane Domestic Travel Desk</h3>
+
+                <p>
+                    Plan your journey with confidence. Our platform connects
+                    domestic travellers with local tourism service providers,
+                    helping make travel information and pricing easier to access.
+                </p>
+
+                <ul class="contact-list">
+
+                    <li>
+                        <span>📍</span>
+                        <span><strong>Office:</strong> President Avenue, Kasane</span>
+                    </li>
+
+                    <li>
+                        <span>📞</span>
+                        <span><strong>Phone:</strong> +267 625 0000 / +267 71 234 567</span>
+                    </li>
+
+                    <li>
+                        <span>📧</span>
+                        <span><strong>Email:</strong> enquiries@chobekasane.co.bw</span>
+                    </li>
+
+                    <li>
+                        <span>🕒</span>
+                        <span><strong>Hours:</strong> Mon – Sat, 08:00 – 17:30</span>
+                    </li>
+
+                </ul>
+
+
+                <!-- TRIP CART SUMMARY -->
+                <div class="enquiry-cart-box" id="enquiryCartPreview" style="display:none;">
+
+                    <h4>🧳 Attached Trip Cart Summary</h4>
+
+                    <div id="enquiryCartSummaryList"></div>
+
+                    <div class="enquiry-cart-total" id="enquiryCartTotal"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOOKING ENQUIRY FORM -->
+            <div class="contact-form-wrapper">
+
+                <form id="enquiryForm" onsubmit="handleFormSubmit(event)">
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+
+                            <input
+                                type="text"
+                                id="fullName"
+                                required
+                                placeholder="e.g., Thabo Molefe"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Botswana Mobile Number *</label>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                required
+                                placeholder="e.g., 71234567 or +267 71234567"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                required
+                                placeholder="name@example.co.bw"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="travelDate">Preferred Arrival Date *</label>
+
+                            <input
+                                type="date"
+                                id="travelDate"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="preferenceTier">Preferred Comfort Tier</label>
+
+                        <select id="preferenceTier">
+                            <option value="Standard">Standard Comfort</option>
+                            <option value="Budget">Budget Friendly</option>
+                            <option value="Luxury">Luxury Safari</option>
+                            <option value="Mixed">Mixed (From Trip Cart)</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="message">Selected Packages & Enquiry Details *</label>
+
+                        <textarea
+                            id="message"
+                            rows="5"
+                            required
+                            placeholder="Specify number of adults/children, Omang citizen rate verification, or special requests..."
+                        ></textarea>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary btn-full">
+                        Send Booking Enquiry →
+                    </button>
+
+                    <p id="formError" class="error-msg" style="display:none;"></p>
+
+                    <p id="formSuccess" class="success-msg" style="display:none;">
+                        ✓ Thank you! Your booking enquiry has been transmitted
+                        to the verified Kasane operator(s).
+                    </p>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- TRIP CART BACKDROP -->
+    <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+
+
+    <!-- TRIP CART DRAWER -->
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+
+        <div class="cart-header">
+
+            <div>
+                <h3>Your Kasane Trip Cart</h3>
+                <p class="cart-subtitle">Citizen & Resident Package Estimator</p>
+            </div>
+
+            <button class="close-cart" onclick="toggleCart()" aria-label="Close Cart">
+                &times;
+            </button>
+
+        </div>
+
+
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Populated dynamically via JS -->
+        </div>
+
+
+        <div class="cart-footer">
+
+            <div class="cart-summary-row">
+                <span>Selected Items</span>
+                <span id="cartTotalItems">0</span>
+            </div>
+
+            <div class="cart-summary-row total-row">
+                <span>Estimated Total (BWP)</span>
+                <span id="cartTotalPrice">BWP 0</span>
+            </div>
+
+            <p class="cart-note">
+                *Includes verified Botswana citizen & resident rates.
+            </p>
+
+            <div class="cart-footer-actions">
+
+                <button class="btn btn-outline btn-sm" onclick="clearCart()">
+                    Clear All
+                </button>
+
+                <a href="contact.html?fromCart=true" class="btn btn-primary btn-sm" style="flex:1;">
+                    Proceed to Enquiry
+                </a>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toastNotification">
+        Added to your Trip Cart!
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <div class="footer-col">
+
+                <a href="index.html" class="logo footer-logo">
+                    <img src="img/BTO LOGO.jpg" alt="Botswana Tourism Organisation Logo">
+                </a>
+
+                <p>
+                    Botswana's centralized domestic tourism portal—connecting
+                    residents with verified Kasane stays, river cruises, and
+                    transparent local pricing.
+                </p>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>Explore</h4>
+
+                <a href="index.html">Home</a>
+                <a href="accommodations.html">Accommodations</a>
+                <a href="activities.html">Activities & Tours</a>
+                <a href="contact.html">Booking Enquiries</a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>Travel Tiers</h4>
+
+                <a href="accommodations.html?tier=Budget">Budget & Camping</a>
+                <a href="accommodations.html?tier=Standard">Standard Comfort</a>
+                <a href="accommodations.html?tier=Luxury">Luxury Safari Lodges</a>
+
+            </div>
+
+
+            <div class="footer-col">
+
+                <h4>Kasane Info Desk</h4>
+
+                <p>📍 President Avenue, Kasane</p>
+                <p>📞 +267 625 0000</p>
+                <p>📧 info@chobekasane.co.bw</p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+                <p>
+                    &copy; 2026 ChobeKasane Domestic Tourism Platform
+                    &bull; Designed for Botswana Residents
+                </p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>

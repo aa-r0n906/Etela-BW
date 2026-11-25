@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+    <title>ChobeKasane | Domestic Tourism & Citizen Rates Portal</title>
+
+    <!-- FIXED IMAGE AND TEXT OVERLAY STYLING -->
+    <style>
+        .listing-visual {
+            position: relative !important;
+            display: block !important;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .listing-visual img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            z-index: 1;
+        }
+
+        .listing-visual .tier-badge {
+            position: absolute !important;
+            top: 15px;
+            left: 15px;
+            z-index: 2;
+            display: inline-block;
+        }
+
+        .listing-visual .category-chip {
+            position: absolute !important;
+            top: 15px;
+            right: 15px;
+            z-index: 2;
+            display: inline-block;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                <img src="img/BTO LOGO.jpg" alt="Botswana Tourism Organisation Logo">
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="active">Home</a>
+                <a href="accommodations.html">Accommodations</a>
+                <a href="activities.html">Activities & Tours</a>
+                <a href="contact.html">Enquiries</a>
+            </nav>
+
+            <div class="nav-actions">
+
+                <button class="cart-trigger" onclick="toggleCart()" aria-label="Open Trip Cart">
+                    <span class="cart-icon">🧳</span>
+                    <span class="cart-label">Trip Cart</span>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+
+            </div>
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="container hero-content">
+
+                <span class="badge">Botswana Resident & Citizen Portal</span>
+
+                <h1>Discover Kasane & Chobe on Your Terms</h1>
+
+                <p>
+                    Compare verified Budget, Standard, and Luxury packages with transparent Botswana Pula (BWP) citizen rates—all in one place.
+                </p>
+
+                <!-- SEARCH BAR -->
+                <form class="hero-search-box" onsubmit="handleHeroSearch(event)">
+
+                    <div class="search-field">
+                        <span class="search-icon">🔍</span>
+
+                        <input
+                            type="text"
+                            id="heroSearchInput"
+                            placeholder="Search lodges, boat cruises, game drives..."
+                            aria-label="Search Kasane tourism"
+                        >
+                    </div>
+
+                    <div class="search-divider"></div>
+
+                    <div class="search-select-wrap">
+                        <select id="heroTierSelect" aria-label="Select travel preference">
+                            <option value="all">All Preferences</option>
+                            <option value="Budget">Budget Friendly</option>
+                            <option value="Standard">Standard Comfort</option>
+                            <option value="Luxury">Luxury Safari</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-accent search-submit-btn">
+                        Search
+                    </button>
+
+                </form>
+
+                <!-- QUICK LINKS -->
+                <div class="quick-tags">
+                    <span>Popular:</span>
+                    <a href="accommodations.html?tier=Luxury">Luxury Lodges</a>
+                    <a href="accommodations.html?tier=Standard">Standard Suites</a>
+                    <a href="activities.html">Sunset Boat Cruise</a>
+                    <a href="accommodations.html?tier=Budget">Self-Drive Camping</a>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- TRAVEL PREFERENCE TIERS -->
+        <section class="tiers-section container">
+
+            <div class="section-header">
+                <span class="eyebrow">Tailored To Your Style</span>
+
+                <h2>Choose Your Travel Preference</h2>
+
+                <p>
+                    Whether you are planning an affordable weekend getaway or an all-inclusive luxury river retreat, filter options by your comfort tier.
+                </p>
+            </div>
+
+            <div class="tiers-grid">
+
+                <!-- BUDGET -->
+                <a href="accommodations.html?tier=Budget" class="tier-card tier-budget">
+
+                    <div class="tier-top">
+                        <span class="tier-pill pill-budget">Budget</span>
+                        <span class="tier-price">From BWP 200</span>
+                    </div>
+
+                    <h3>Authentic & Accessible</h3>
+
+                    <p>
+                        Well-equipped campsites, self-catering chalets, and group excursions designed for value-conscious local explorers.
+                    </p>
+
+                    <span class="tier-link">Browse Budget Options &rarr;</span>
+
+                </a>
+
+                <!-- STANDARD -->
+                <a href="accommodations.html?tier=Standard" class="tier-card tier-standard">
+
+                    <div class="tier-top">
+                        <span class="tier-pill pill-standard">Standard</span>
+                        <span class="tier-price">From BWP 650</span>
+                    </div>
+
+                    <h3>Balanced Comfort</h3>
+
+                    <p>
+                        Air-conditioned riverine suites, bed & breakfast guest houses, and guided Chobe half-day safaris.
+                    </p>
+
+                    <span class="tier-link">Browse Standard Options &rarr;</span>
+
+                </a>
+
+                <!-- LUXURY -->
+                <a href="accommodations.html?tier=Luxury" class="tier-card tier-luxury">
+
+                    <div class="tier-top">
+                        <span class="tier-pill pill-luxury">Luxury</span>
+                        <span class="tier-price">From BWP 1,450</span>
+                    </div>
+
+                    <h3>Premier Wilderness</h3>
+
+                    <p>
+                        Waterfront safari lodges, private sunset cruises, full-board dining, and exclusive wildlife decks.
+                    </p>
+
+                    <span class="tier-link">Browse Luxury Options &rarr;</span>
+
+                </a>
+
+            </div>
+        </section>
+
+
+        <!-- FEATURED CITIZEN SPECIALS -->
+        <section class="featured-section">
+
+            <div class="container">
+
+                <div class="section-header">
+                    <span class="eyebrow">Instant Trip Builder</span>
+
+                    <h2>Featured Citizen Specials</h2>
+
+                    <p>
+                        Click <strong>+ Add to Trip</strong> on any stay or activity to calculate your total Kasane trip budget automatically.
+                    </p>
+                </div>
+
+
+                <div class="listings-grid">
+
+                    <!-- ITEM 1: CHOBE WATERFRONT SANCTUARY -->
+                    <article class="listing-card" data-tier="Luxury">
+
+                        <div class="listing-visual visual-chobe-luxury">
+
+                            <img
+                                src="img/Chobe Waterfront Sanctuary.jpg"
+                                alt="Chobe Waterfront Sanctuary"
+                            >
+
+                            <span class="tier-badge badge-luxury">Luxury</span>
+
+                            <span class="category-chip">Safari Lodge</span>
+
+                        </div>
+
+                        <div class="listing-body">
+
+                            <h3>Chobe Waterfront Sanctuary</h3>
+
+                            <p class="location">📍 Kasane Riverfront, Chobe</p>
+
+                            <p class="desc">
+                                Private river-facing suite, infinity pool, and complimentary evening boat cruise for citizens.
+                            </p>
+
+                            <div class="rate-box">
+                                <div>
+                                    <span class="rate-label">Citizen Rate</span>
+                                    <span class="rate-sub">per night (Full Board)</span>
+                                </div>
+
+                                <span class="rate-price">BWP 1,450</span>
+                            </div>
+
+                            <div class="card-actions">
+                                <button
+                                    class="btn btn-primary btn-full"
+                                    onclick="addToCart('chobe-sanctuary', 'Chobe Waterfront Sanctuary (Luxury)', 1450, 'Night')"
+                                >
+                                    + Add to Trip
+                                </button>
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- ITEM 2: CHOBE RIVER SUNSET BOAT CRUISE -->
+                    <article class="listing-card" data-tier="Standard">
+
+                        <div class="listing-visual visual-cruise-std">
+
+                            <img
+                                src="img/Chobe River Sunset Boat Cruise.jpg"
+                                alt="Chobe River Sunset Boat Cruise"
+                            >
+
+                            <span class="tier-badge badge-standard">Standard</span>
+
+                            <span class="category-chip">Water Activity</span>
+
+                        </div>
+
+                        <div class="listing-body">
+
+                            <h3>Chobe River Sunset Boat Cruise</h3>
+
+                            <p class="location">📍 Chobe Marina Jetty</p>
+
+                            <p class="desc">
+                                3-hour guided river safari with refreshments, ideal for elephant and hippo photography at dusk.
+                            </p>
+
+                            <div class="rate-box">
+                                <div>
+                                    <span class="rate-label">Citizen Rate</span>
+                                    <span class="rate-sub">per person</span>
+                                </div>
+
+                                <span class="rate-price">BWP 280</span>
+                            </div>
+
+                            <div class="card-actions">
+                                <button
+                                    class="btn btn-primary btn-full"
+                                    onclick="addToCart('sunset-cruise', 'Chobe Sunset Boat Cruise (Standard)', 280, 'Person')"
+                                >
+                                    + Add to Trip
+                                </button>
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- ITEM 3: SENYATI ELEPHANT BUNKER CAMP -->
+                    <article class="listing-card" data-tier="Budget">
+
+                        <div class="listing-visual visual-camp-budget">
+
+                            <img
+                                src="img/Senyati Elephant Bunker Camp.jpg"
+                                alt="Senyati Elephant Bunker Camp"
+                            >
+
+                            <span class="tier-badge badge-budget">Budget</span>
+
+                            <span class="category-chip">Eco Camp</span>
+
+                        </div>
+
+                        <div class="listing-body">
+
+                            <h3>Senyati Elephant Bunker Camp</h3>
+
+                            <p class="location">📍 Lesoma Valley, Kasane</p>
+
+                            <p class="desc">
+                                Shaded self-drive campsite with private ablutions and access to the famous underground waterhole bunker.
+                            </p>
+
+                            <div class="rate-box">
+                                <div>
+                                    <span class="rate-label">Citizen Rate</span>
+                                    <span class="rate-sub">per night (Self-Catering)</span>
+                                </div>
+
+                                <span class="rate-price">BWP 320</span>
+                            </div>
+
+                            <div class="card-actions">
+                                <button
+                                    class="btn btn-primary btn-full"
+                                    onclick="addToCart('senyati-camp', 'Senyati Bunker Camp (Budget)', 320, 'Night')"
+                                >
+                                    + Add to Trip
+                                </button>
+                            </div>
+
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- TRIP CART BACKDROP -->
+    <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+
+
+    <!-- TRIP CART DRAWER -->
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+
+        <div class="cart-header">
+            <div>
+                <h3>Your Kasane Trip Cart</h3>
+                <p class="cart-subtitle">Citizen & Resident Package Estimator</p>
+            </div>
+
+            <button class="close-cart" onclick="toggleCart()" aria-label="Close Cart">
+                &times;
+            </button>
+        </div>
+
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Populated dynamically via JS -->
+        </div>
+
+        <div class="cart-footer">
+
+            <div class="cart-summary-row">
+                <span>Selected Items</span>
+                <span id="cartTotalItems">0</span>
+            </div>
+
+            <div class="cart-summary-row total-row">
+                <span>Estimated Total (BWP)</span>
+                <span id="cartTotalPrice">BWP 0</span>
+            </div>
+
+            <p class="cart-note">
+                *Includes verified Botswana citizen & resident rates.
+            </p>
+
+            <div class="cart-footer-actions">
+
+                <button class="btn btn-outline btn-sm" onclick="clearCart()">
+                    Clear All
+                </button>
+
+                <a href="contact.html?fromCart=true" class="btn btn-primary btn-sm" style="flex:1;">
+                    Proceed to Enquiry
+                </a>
+
+            </div>
+        </div>
+    </aside>
+
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toastNotification">
+        Added to your Trip Cart!
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <!-- BRAND INFORMATION -->
+            <div class="footer-col">
+
+                <a href="index.html" class="logo footer-logo">
+                    <img src="img/BTO LOGO.jpg" alt="Botswana Tourism Organisation Logo">
+                </a>
+
+                <p>
+                    Botswana's centralized domestic tourism portal—connecting residents with verified Kasane stays, river cruises, and transparent local pricing.
+                </p>
+
+            </div>
+
+            <!-- EXPLORE LINKS -->
+            <div class="footer-col">
+                <h4>Explore</h4>
+                <a href="index.html">Home</a>
+                <a href="accommodations.html">Accommodations</a>
+                <a href="activities.html">Activities & Tours</a>
+                <a href="contact.html">Booking Enquiries</a>
+            </div>
+
+            <!-- TRAVEL TIERS -->
+            <div class="footer-col">
+                <h4>Travel Tiers</h4>
+                <a href="accommodations.html?tier=Budget">Budget & Camping</a>
+                <a href="accommodations.html?tier=Standard">Standard Comfort</a>
+                <a href="accommodations.html?tier=Luxury">Luxury Safari Lodges</a>
+            </div>
+
+            <!-- CONTACT INFORMATION -->
+            <div class="footer-col">
+                <h4>Kasane Info Desk</h4>
+                <p>📍 President Avenue, Kasane</p>
+                <p>📞 +267 625 0000</p>
+                <p>📧 info@chobekasane.co.bw</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <p>
+                    &copy; 2026 ChobeKasane Domestic Tourism Platform &bull; Designed for Botswana Residents
+                </p>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>

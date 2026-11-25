@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+
+    <title>Activities & Tours | ChobeKasane Domestic Tourism</title>
+
+    <!-- IMAGE OVERLAY FIX -->
+    <style>
+        .listing-visual {
+            position: relative !important;
+            display: block !important;
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .listing-visual img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            z-index: 1;
+        }
+
+        .listing-visual .tier-badge {
+            position: absolute !important;
+            top: 15px;
+            left: 15px;
+            z-index: 2;
+            display: inline-block;
+        }
+
+        .listing-visual .category-chip {
+            position: absolute !important;
+            top: 15px;
+            right: 15px;
+            z-index: 2;
+            display: inline-block;
+        }
+
+        .logo img {
+            height: 48px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+
+        <div class="container nav-container">
+
+            <a href="index.html" class="logo">
+                <img src="img/BTO LOGO.jpg" alt="Botswana Tourism Organisation Logo">
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html">Home</a>
+                <a href="accommodations.html">Accommodations</a>
+                <a href="activities.html" class="active">Activities & Tours</a>
+                <a href="contact.html">Enquiries</a>
+            </nav>
+
+            <div class="nav-actions">
+
+                <button class="cart-trigger" onclick="toggleCart()" aria-label="Open Trip Cart">
+                    <span class="cart-icon">🧳</span>
+                    <span class="cart-label">Trip Cart</span>
+                    <span class="cart-badge" id="cartCount">0</span>
+                </button>
+
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main class="container page-main">
+
+        <!-- PAGE HEADER -->
+        <div class="page-header">
+
+            <span class="eyebrow">Chobe Experiences</span>
+
+            <h1>Activities & Guided Excursions</h1>
+
+            <p>
+                Select from Budget group tours, Standard river cruises, or Luxury private safaris and add them to your Trip Cart.
+            </p>
+
+        </div>
+
+
+        <!-- FILTERS AND SEARCH -->
+        <div class="controls-wrapper">
+
+            <div class="tier-tabs" role="tablist">
+
+                <button class="tier-tab active" data-tier="all" onclick="setTierFilter('all', this)">
+                    All Tiers
+                </button>
+
+                <button class="tier-tab" data-tier="Budget" onclick="setTierFilter('Budget', this)">
+                    Budget
+                </button>
+
+                <button class="tier-tab" data-tier="Standard" onclick="setTierFilter('Standard', this)">
+                    Standard
+                </button>
+
+                <button class="tier-tab" data-tier="Luxury" onclick="setTierFilter('Luxury', this)">
+                    Luxury
+                </button>
+
+            </div>
+
+            <div class="search-inline">
+
+                <input
+                    type="text"
+                    id="pageSearchInput"
+                    placeholder="Search boat cruise, game drive..."
+                    onkeyup="applyPageFilters()"
+                >
+
+                <button class="btn btn-primary btn-sm" onclick="applyPageFilters()">
+                    Search
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIVITIES LISTINGS -->
+        <div class="listings-grid" id="filterableGrid">
+
+
+            <!-- LUXURY ACTIVITY: PRIVATE SUNSET PHOTOBOAT -->
+            <article class="listing-card" data-tier="Luxury">
+
+                <div class="listing-visual visual-private-luxury">
+
+                    <img
+                        src="img/Private Sunset Photoboat Charter.jpg"
+                        alt="Private Sunset Photoboat Charter"
+                    >
+
+                    <span class="tier-badge badge-luxury">Luxury</span>
+
+                    <span class="category-chip">Private Charter</span>
+
+                </div>
+
+                <div class="listing-body">
+
+                    <h3>Private Sunset Photoboat Charter</h3>
+
+                    <p class="location">📍 Chobe Riverfront</p>
+
+                    <p class="desc">
+                        Exclusive 360° swivel-seat photography boat with private captain, gourmet snacks, and sundowners.
+                    </p>
+
+                    <div class="rate-box">
+
+                        <div>
+                            <span class="rate-label">Citizen Rate</span>
+                            <span class="rate-sub">per private charter</span>
+                        </div>
+
+                        <span class="rate-price">BWP 1,200</span>
+
+                    </div>
+
+                    <div class="card-actions">
+
+                        <button
+                            class="btn btn-primary"
+                            style="flex:1;"
+                            onclick="addToCart('private-photoboat', 'Private Sunset Photoboat (Luxury)', 1200, 'Charter')"
+                        >
+                            + Add to Trip
+                        </button>
+
+                        <a href="contact.html?activity=Private%20Photoboat" class="btn btn-outline">
+                            Enquire
+                        </a>
+
+                    </div>
+
+                </div>
+            </article>
+
+
+            <!-- STANDARD ACTIVITY 1: SUNSET BOAT CRUISE -->
+            <article class="listing-card" data-tier="Standard">
+
+                <div class="listing-visual visual-cruise-std">
+
+                    <img
+                        src="img/Chobe River Sunset Boat Cruise.jpg"
+                        alt="Chobe River Sunset Boat Cruise"
+                    >
+
+                    <span class="tier-badge badge-standard">Standard</span>
+
+                    <span class="category-chip">Boat Safari</span>
+
+                </div>
+
+                <div class="listing-body">
+
+                    <h3>Chobe River Sunset Boat Cruise</h3>
+
+                    <p class="location">📍 Chobe Marina Jetty</p>
+
+                    <p class="desc">
+                        3-hour double-decker boat cruise along Sedudu Island with soft drinks and expert wildlife commentary.
+                    </p>
+
+                    <div class="rate-box">
+
+                        <div>
+                            <span class="rate-label">Citizen Rate</span>
+                            <span class="rate-sub">per person</span>
+                        </div>
+
+                        <span class="rate-price">BWP 280</span>
+
+                    </div>
+
+                    <div class="card-actions">
+
+                        <button
+                            class="btn btn-primary"
+                            style="flex:1;"
+                            onclick="addToCart('sunset-cruise', 'Chobe Sunset Boat Cruise (Standard)', 280, 'Person')"
+                        >
+                            + Add to Trip
+                        </button>
+
+                        <a href="contact.html?activity=Sunset%20Boat%20Cruise" class="btn btn-outline">
+                            Enquire
+                        </a>
+
+                    </div>
+
+                </div>
+            </article>
+
+
+            <!-- STANDARD ACTIVITY 2: MORNING GAME DRIVE -->
+            <article class="listing-card" data-tier="Standard">
+
+                <div class="listing-visual visual-gamedrive-std">
+
+                    <img
+                        src="img/Chobe Morning 4x4 Game Drive.jpg"
+                        alt="Chobe Morning 4x4 Game Drive"
+                    >
+
+                    <span class="tier-badge badge-standard">Standard</span>
+
+                    <span class="category-chip">4x4 Game Drive</span>
+
+                </div>
+
+                <div class="listing-body">
+
+                    <h3>Chobe Morning 4x4 Game Drive</h3>
+
+                    <p class="location">📍 Sedudu Gate, Chobe National Park</p>
+
+                    <p class="desc">
+                        Half-day open-vehicle safari tracking lions, leopards, sable antelope, and vast elephant herds.
+                    </p>
+
+                    <div class="rate-box">
+
+                        <div>
+                            <span class="rate-label">Citizen Rate</span>
+                            <span class="rate-sub">per person (excl. park fee)</span>
+                        </div>
+
+                        <span class="rate-price">BWP 350</span>
+
+                    </div>
+
+                    <div class="card-actions">
+
+                        <button
+                            class="btn btn-primary"
+                            style="flex:1;"
+                            onclick="addToCart('morning-drive', 'Chobe Morning 4x4 Game Drive (Standard)', 350, 'Person')"
+                        >
+                            + Add to Trip
+                        </button>
+
+                        <a href="contact.html?activity=Morning%20Game%20Drive" class="btn btn-outline">
+                            Enquire
+                        </a>
+
+                    </div>
+
+                </div>
+            </article>
+
+
+            <!-- BUDGET ACTIVITY: CULTURAL WALK -->
+            <article class="listing-card" data-tier="Budget">
+
+                <div class="listing-visual visual-culture-budget">
+
+                    <img
+                        src="img/Kasane & Kazungula Cultural Walk.jpg"
+                        alt="Kasane & Kazungula Cultural Walk"
+                    >
+
+                    <span class="tier-badge badge-budget">Budget</span>
+
+                    <span class="category-chip">Cultural & Heritage</span>
+
+                </div>
+
+                <div class="listing-body">
+
+                    <h3>Kasane & Kazungula Cultural Walk</h3>
+
+                    <p class="location">📍 Kasane Village & Four Corners</p>
+
+                    <p class="desc">
+                        Guided walking tour visiting local craft markets, traditional cuisine tasting, and the Quadripoint viewpoint.
+                    </p>
+
+                    <div class="rate-box">
+
+                        <div>
+                            <span class="rate-label">Citizen Rate</span>
+                            <span class="rate-sub">per person</span>
+                        </div>
+
+                        <span class="rate-price">BWP 180</span>
+
+                    </div>
+
+                    <div class="card-actions">
+
+                        <button
+                            class="btn btn-primary"
+                            style="flex:1;"
+                            onclick="addToCart('cultural-walk', 'Kasane Cultural Walk (Budget)', 180, 'Person')"
+                        >
+                            + Add to Trip
+                        </button>
+
+                        <a href="contact.html?activity=Cultural%20Walk" class="btn btn-outline">
+                            Enquire
+                        </a>
+
+                    </div>
+
+                </div>
+            </article>
+
+        </div>
+
+
+        <!-- EMPTY FILTER STATE -->
+        <div id="emptyFilterState" class="empty-state" style="display:none;">
+
+            <h3>No matching activities found</h3>
+
+            <p>Try clearing your search keyword or switching to "All Tiers".</p>
+
+            <button class="btn btn-outline btn-sm" onclick="resetPageFilters()">
+                Reset Filters
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- TRIP CART BACKDROP -->
+    <div class="cart-backdrop" id="cartBackdrop" onclick="toggleCart()"></div>
+
+
+    <!-- TRIP CART DRAWER -->
+    <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+
+        <div class="cart-header">
+
+            <div>
+                <h3>Your Kasane Trip Cart</h3>
+                <p class="cart-subtitle">Citizen & Resident Package Estimator</p>
+            </div>
+
+            <button class="close-cart" onclick="toggleCart()" aria-label="Close Cart">
+                &times;
+            </button>
+
+        </div>
+
+        <div class="cart-items" id="cartItemsContainer">
+            <!-- Populated dynamically via JS -->
+        </div>
+
+        <div class="cart-footer">
+
+            <div class="cart-summary-row">
+                <span>Selected Items</span>
+                <span id="cartTotalItems">0</span>
+            </div>
+
+            <div class="cart-summary-row total-row">
+                <span>Estimated Total (BWP)</span>
+                <span id="cartTotalPrice">BWP 0</span>
+            </div>
+
+            <p class="cart-note">
+                *Includes verified Botswana citizen & resident rates.
+            </p>
+
+            <div class="cart-footer-actions">
+
+                <button class="btn btn-outline btn-sm" onclick="clearCart()">
+                    Clear All
+                </button>
+
+                <a href="contact.html?fromCart=true" class="btn btn-primary btn-sm" style="flex:1;">
+                    Proceed to Enquiry
+                </a>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast" id="toastNotification">
+        Added to your Trip Cart!
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container footer-content">
+
+            <div class="footer-col">
+
+                <a href="index.html" class="logo footer-logo">
+                    <img src="img/BTO LOGO.jpg" alt="Botswana Tourism Organisation Logo">
+                </a>
+
+                <p>
+                    Botswana's centralized domestic tourism portal—connecting residents with verified Kasane stays, river cruises, and transparent local pricing.
+                </p>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h4>Explore</h4>
+
+                <a href="index.html">Home</a>
+                <a href="accommodations.html">Accommodations</a>
+                <a href="activities.html">Activities & Tours</a>
+                <a href="contact.html">Booking Enquiries</a>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h4>Travel Tiers</h4>
+
+                <a href="accommodations.html?tier=Budget">Budget & Camping</a>
+                <a href="accommodations.html?tier=Standard">Standard Comfort</a>
+                <a href="accommodations.html?tier=Luxury">Luxury Safari Lodges</a>
+
+            </div>
+
+            <div class="footer-col">
+
+                <h4>Kasane Info Desk</h4>
+
+                <p>📍 President Avenue, Kasane</p>
+                <p>📞 +267 625 0000</p>
+                <p>📧 info@chobekasane.co.bw</p>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    &copy; 2026 ChobeKasane Domestic Tourism Platform &bull; Designed for Botswana Residents
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
